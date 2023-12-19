@@ -53,6 +53,22 @@ handleClick = (event) => {
       }
     }
   }
+  for (let i = 0; i < winning_combinations.length; i++) {
+    if (
+      document.getElementById("s" + winning_combinations[i][0]).innerHTML ==
+        "O" &&
+      document.getElementById("s" + winning_combinations[i][1]).innerHTML ==
+        "O" &&
+      document.getElementById("s" + winning_combinations[i][2]).innerHTML == "O"
+    ) {
+      win.innerHTML = "Game Over! <span>Player 2 wins!!!</span>";
+      for (let i = 1; i <= 9; i++) {
+        document
+          .getElementById("s" + i)
+          .removeEventListener("click", handleClick);
+      }
+    }
+  }
   // All PLAYER X WINNING CONDITIONS
   //   if (
   //     (document.getElementById("s1").innerHTML == "X") &
