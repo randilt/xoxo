@@ -14,7 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
   squares.forEach((square) => {
     square.addEventListener("click", handleClick);
   });
-}); // adding event listener to all the squares
+  document.getElementById("reset").addEventListener("click", () => {
+    // adding event listener to reset button
+    for (let i = 1; i <= 9; i++) {
+      // resetting all the squares
+      document.getElementById("s" + i).innerHTML = "";
+      document.getElementById("s" + i).classList.remove("active-x");
+      document.getElementById("s" + i).classList.remove("active-o");
+    }
+    document.querySelector(".win-message").innerHTML = "";
+    document.querySelector(".current").innerHTML =
+      "Player 1's Chance <span>(X)</span>";
+    count = 0;
+    squares.forEach((square) => {
+      // adding event listener to all the squares
+      square.addEventListener("click", handleClick);
+    });
+  });
+});
 let count = 0;
 
 handleClick = (event) => {
