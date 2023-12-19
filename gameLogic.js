@@ -35,7 +35,14 @@ handleClick = (event) => {
   }
   count++;
   let win = document.querySelector(".win-message");
-
+  const disableSquares = () => {
+    for (let i = 1; i <= 9; i++) {
+      // removing event listener from all the squares when win condition is met
+      document
+        .getElementById("s" + i)
+        .removeEventListener("click", handleClick);
+    }
+  };
   const checkWin = (letter) => {
     // function checking if any of the winning combinations are satisfied
     for (let i = 0; i < winning_combinations.length; i++) {
@@ -48,12 +55,7 @@ handleClick = (event) => {
           letter
       ) {
         win.innerHTML = "Game Over! <span>Player 1 wins!!!</span>";
-        for (let i = 1; i <= 9; i++) {
-          // removing event listener from all the squares when win condition is met
-          document
-            .getElementById("s" + i)
-            .removeEventListener("click", handleClick);
-        }
+        disableSquares();
       }
     }
   };
