@@ -10,12 +10,13 @@ body {
   display: flex;
   background-color: rgb(11, 11, 35);
   font-family: "Rubik Bubbles", sans-serif;
-
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .square {
   width: 100px;
+
   cursor: pointer;
   height: 100px;
   display: flex;
@@ -27,6 +28,10 @@ body {
   border-radius: 10px;
   animation: square 2s infinite;
   border: 2px solid black;
+}
+.game-info {
+  max-width: 50%;
+  text-align: left;
 }
 .game-info h1 {
   font-size: 66px;
@@ -54,7 +59,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 80px;
+  gap: 30px;
   text-align: center;
   font-size: 24px;
 }
@@ -70,4 +75,39 @@ body {
   font-size: 24px;
   text-transform: uppercase;
   cursor: pointer;
+}
+.xoxo {
+  display: flex;
+  gap: 100px;
+  border: 6px solid white;
+  border-radius: 25px;
+  -webkit-text-stroke: 1px black;
+  padding: 30px;
+  justify-content: center;
+}
+.win-message {
+  font-size: 54px;
+  max-width: 400px;
+  color: rgb(0, 255, 8);
+  text-align: left;
+}
+.footer img {
+  width: 48px;
+  height: 48px;
+}
+.footer a {
+  text-decoration: none;
+  text-align: center;
+}
+.footer a p {
+  color: white;
+}
+.footer {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgb(19, 19, 55);
 }
