@@ -7,21 +7,21 @@ const winning_combinations = [
   [3, 6, 9],
   [1, 5, 9],
   [3, 5, 7],
-];
+]; // all the winning possibilities
 
 document.addEventListener("DOMContentLoaded", () => {
   let squares = document.querySelectorAll(".square");
   squares.forEach((square) => {
     square.addEventListener("click", handleClick);
   });
-});
+}); // adding event listener to all the squares
 let count = 0;
 
 handleClick = (event) => {
-  const isGameOver = true;
   let current = document.querySelector(".current");
-  let square = document.getElementById(event.target.id);
+  let square = document.getElementById(event.target.id); // getting the id of the square clicked
   if (count % 2 == 0) {
+    // checking if it is player 1's turn or player 2's turn
     current.innerHTML = "Player 2's Chance <span>(O)</span>";
     square.classList.add("active-x");
     square.innerHTML = "X";
@@ -35,38 +35,28 @@ handleClick = (event) => {
   }
   count++;
   let win = document.querySelector(".win-message");
-  console.log(winning_combinations[1]);
 
-  for (let i = 0; i < winning_combinations.length; i++) {
-    if (
-      document.getElementById("s" + winning_combinations[i][0]).innerHTML ==
-        "X" &&
-      document.getElementById("s" + winning_combinations[i][1]).innerHTML ==
-        "X" &&
-      document.getElementById("s" + winning_combinations[i][2]).innerHTML == "X"
-    ) {
-      win.innerHTML = "Game Over! <span>Player 1 wins!!!</span>";
-      for (let i = 1; i <= 9; i++) {
-        document
-          .getElementById("s" + i)
-          .removeEventListener("click", handleClick);
+  const checkWin = (letter) => {
+    // function checking if any of the winning combinations are satisfied
+    for (let i = 0; i < winning_combinations.length; i++) {
+      if (
+        document.getElementById("s" + winning_combinations[i][0]).innerHTML ==
+          letter &&
+        document.getElementById("s" + winning_combinations[i][1]).innerHTML ==
+          letter &&
+        document.getElementById("s" + winning_combinations[i][2]).innerHTML ==
+          letter
+      ) {
+        win.innerHTML = "Game Over! <span>Player 1 wins!!!</span>";
+        for (let i = 1; i <= 9; i++) {
+          // removing event listener from all the squares when win condition is met
+          document
+            .getElementById("s" + i)
+            .removeEventListener("click", handleClick);
+        }
       }
     }
-  }
-  for (let i = 0; i < winning_combinations.length; i++) {
-    if (
-      document.getElementById("s" + winning_combinations[i][0]).innerHTML ==
-        "O" &&
-      document.getElementById("s" + winning_combinations[i][1]).innerHTML ==
-        "O" &&
-      document.getElementById("s" + winning_combinations[i][2]).innerHTML == "O"
-    ) {
-      win.innerHTML = "Game Over! <span>Player 2 wins!!!</span>";
-      for (let i = 1; i <= 9; i++) {
-        document
-          .getElementById("s" + i)
-          .removeEventListener("click", handleClick);
-      }
-    }
-  }
+  };
+  checkWin("X"); // checking if player 1 has won
+  checkWin("O"); // checking if player 2 has won
 };
